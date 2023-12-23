@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
-
 import List from "./Components/List/List";
 import Navbar from "./Components/Navbar/Navbar";
 
@@ -118,7 +117,7 @@ const App = () => {
             {
               status: (
                 <>
-                  {statusData.map((listItem) => {
+                  {statusData.map((listItem, item) => {
                     return (
                       <List
                         groupValue="status"
@@ -127,6 +126,7 @@ const App = () => {
                         listIcon=""
                         statusData={statusData}
                         ticketDetails={ticketDetails}
+                        key={item}
                       />
                     );
                   })}
@@ -134,7 +134,7 @@ const App = () => {
               ),
               user: (
                 <>
-                  {userData.map((listItem) => {
+                  {userData.map((listItem, item) => {
                     return (
                       <List
                         groupValue="user"
@@ -143,6 +143,7 @@ const App = () => {
                         listIcon=""
                         userData={userData}
                         ticketDetails={ticketDetails}
+                        key={item}
                       />
                     );
                   })}
@@ -150,7 +151,7 @@ const App = () => {
               ),
               priority: (
                 <>
-                  {priorityData.map((listItem) => {
+                  {priorityData.map((listItem, item) => {
                     return (
                       <List
                         groupValue="priority"
@@ -159,6 +160,7 @@ const App = () => {
                         listIcon=""
                         priorityData={priorityData}
                         ticketDetails={ticketDetails}
+                        key={item}
                       />
                     );
                   })}
