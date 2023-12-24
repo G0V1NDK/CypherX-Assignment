@@ -23,16 +23,16 @@ const App = () => {
   ];
 
   const [groupValue, setgroupValue] = useState(
-    getStateFromLocalStorage() || "status"
+    getStateLS() || "status"
   );
-  const [orderValue, setorderValue] = useState("title");
+  const [orderData, setorderData] = useState("title");
   const [ticketDetails, setticketDetails] = useState([]);
 
   const orderDataByValue = useCallback(
     async (cardsArry) => {
-      if (orderValue === "priority") {
+      if (orderData === "priority") {
         cardsArry.sort((a, b) => b.priority - a.priority);
-      } else if (orderValue === "title") {
+      } else if (orderData === "title") {
         cardsArry.sort((a, b) => {
           const titleA = a.title.toLowerCase();
           const titleB = b.title.toLowerCase();
@@ -48,14 +48,14 @@ const App = () => {
       }
       await setticketDetails(cardsArry);
     },
-    [orderValue, setticketDetails]
+    [orderData, setticketDetails]
   );
 
-  function saveStateToLocalStorage(state) {
+  function saveStateLS(state) {
     localStorage.setItem("groupValue", JSON.stringify(state));
   }
 
-  function getStateFromLocalStorage() {
+  function getStateLS() {
     const storedState = localStorage.getItem("groupValue");
     if (storedState) {
       return JSON.parse(storedState);
@@ -64,7 +64,7 @@ const App = () => {
   }
 
   useEffect(() => {
-    saveStateToLocalStorage(groupValue);
+    saveStateLS(groupValue);
     async function fetchData() {
       const response = await axios.get(
         "https://tfyincvdrafxe7ut2ziwuhe5cm0xvsdu.lambda-url.ap-south-1.on.aws/ticketAndUsers"
@@ -74,7 +74,7 @@ const App = () => {
     fetchData();
 
     async function extractData(response) {
-      let ticketArray = [];
+      let cardsData = [];
       if (response.status === 200) {
         for (let i = 0; i < response.data.tickets.length; i++) {
           for (let j = 0; j < response.data.users.length; j++) {
@@ -83,13 +83,13 @@ const App = () => {
                 ...response.data.tickets[i],
                 userObj: response.data.users[j],
               };
-              ticketArray.push(ticketJson);
+              cardsData.push(ticketJson);
             }
           }
         }
       }
-      await setticketDetails(ticketArray);
-      orderDataByValue(ticketArray);
+      await setticketDetails(cardsData);
+      orderDataByValue(cardsData);
     }
   }, [orderDataByValue, groupValue]);
 
@@ -98,8 +98,8 @@ const App = () => {
     console.log(value);
   }
 
-  function handleOrderValue(value) {
-    setorderValue(value);
+  function handleOrderData(value) {
+    setorderData(value);
     console.log(value);
   }
 
@@ -107,12 +107,12 @@ const App = () => {
     <>
       <Navbar
         groupValue={groupValue}
-        orderValue={orderValue}
+        orderData={orderData}
         handleGroupValue={handleGroupValue}
-        handleOrderValue={handleOrderValue}
+        handleOrderData={handleOrderData}
       />
-      <section className="board-details">
-        <div className="board-details-list">
+      <section className="canvas-area">
+        <div className="w-full grid grid-cols-1 gap-3 md:grid-cols-3 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
           {
             {
               status: (
@@ -121,7 +121,7 @@ const App = () => {
                     return (
                       <List
                         groupValue="status"
-                        orderValue={orderValue}
+                        orderData={orderData}
                         listTitle={listItem}
                         listIcon=""
                         statusData={statusData}
@@ -138,7 +138,7 @@ const App = () => {
                     return (
                       <List
                         groupValue="user"
-                        orderValue={orderValue}
+                        orderData={orderData}
                         listTitle={listItem}
                         listIcon=""
                         userData={userData}
@@ -155,7 +155,7 @@ const App = () => {
                     return (
                       <List
                         groupValue="priority"
-                        orderValue={orderValue}
+                        orderData={orderData}
                         listTitle={listItem.priority}
                         listIcon=""
                         priorityData={priorityData}

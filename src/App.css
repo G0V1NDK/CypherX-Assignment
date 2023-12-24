@@ -3,23 +3,19 @@
     padding: 0;
     box-sizing: border-box;
   }
+
   :root{
-    --white1: #ffffff;
-    --black1: #000000;
-  
     --textgrey: #808184;
-  
     --grey1: #dfe4e9;
     --grey2: #f0f1f4;
     --grey3: #F8F8FA;
-  
+    --black1: #000000;
+    --white1: #ffffff;
   }
-  .board-details{
+  .canvas-area{
+    background-color: #f4f5f8;
+    overflow-x: scroll;
     width: 100%;
     height: calc(100vh - 68px);
-    overflow-x: scroll;
-  }
-  .board-details-list{
-    width: 100vw;
-    display: flex;
+    padding: 20px;
   }

@@ -1,5 +1,12 @@
 # CYPHERX ASSIGNEMENT
 
+## FEATURES
+- Tech Stack: React, Tailwind, Axios
+- Filter by using Grouping and Ordering
+- Resposive layout using grid
+- [TO BE ADDED] Adding Tickets(Card)
+
+
 ## Project Setup Steps
 ### Prerequisites
 Node.js installed (https://nodejs.org/)

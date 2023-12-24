@@ -1,15 +1,13 @@
 import React from "react";
-
 import Card from "../Card/Card";
 
-let cardCount = 0;
-
+let counterVar = 0;
 export default function List(props) {
-  console.log(props);
+  // console.log(props);
   return (
     <>
       <div className="w-full ml-1 last:mr-1.2">
-        <div className="flex items-center justify-between py-1 border-b">
+        <div className="flex items-center justify-between py-1 mb-4">
           <div className="flex items-center">
             {
               {
@@ -22,11 +20,11 @@ export default function List(props) {
                             <svg
                               stroke="currentColor"
                               fill="none"
-                              stroke-width="2"
+                              strokeWidth="2"
                               viewBox="0 0 24 24"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              class="icon"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              className="icon"
                               height="1em"
                               width="1em"
                               xmlns="http://www.w3.org/2000/svg"
@@ -57,11 +55,11 @@ export default function List(props) {
                             <svg
                               stroke="currentColor"
                               fill="none"
-                              stroke-width="2"
+                              strokeWidth="2"
                               viewBox="0 0 24 24"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              class="icon"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              className="icon"
                               height="1em"
                               width="1em"
                               xmlns="http://www.w3.org/2000/svg"
@@ -81,9 +79,9 @@ export default function List(props) {
                             <svg
                               stroke="currentColor"
                               fill="currentColor"
-                              stroke-width="0"
+                              strokeWidth="0"
                               viewBox="0 0 24 24"
-                              class="icon"
+                              className="icon"
                               height="1em"
                               width="1em"
                               xmlns="http://www.w3.org/2000/svg"
@@ -98,9 +96,9 @@ export default function List(props) {
                             <svg
                               stroke="currentColor"
                               fill="currentColor"
-                              stroke-width="0"
+                              strokeWidth="0"
                               viewBox="0 0 24 24"
-                              class="icon"
+                              className="icon"
                               height="1em"
                               width="1em"
                               xmlns="http://www.w3.org/2000/svg"
@@ -160,9 +158,9 @@ export default function List(props) {
                             >
                               <g fill="currentColor">
                                 <path
-                                  fill-rule="evenodd"
+                                  fillRule="evenodd"
                                   d="M35 6a3 3 0 0 0-3 3v30a3 3 0 0 0 3 3h4a3 3 0 0 0 3-3V9a3 3 0 0 0-3-3h-4Zm-1 3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v30a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V9ZM19 21a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v18a3 3 0 0 1-3 3h-4a3 3 0 0 1-3-3V21Zm3-1a1 1 0 0 0-1 1v18a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1V21a1 1 0 0 0-1-1h-4Z"
-                                  clip-rule="evenodd"
+                                  clipRule="evenodd"
                                 />
                                 <path d="M6 33a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3v-6Z" />
                               </g>
@@ -181,9 +179,9 @@ export default function List(props) {
                               <g fill="currentColor">
                                 <path d="M19 21a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v18a3 3 0 0 1-3 3h-4a3 3 0 0 1-3-3V21ZM6 33a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3v-6Z" />
                                 <path
-                                  fill-rule="evenodd"
+                                  fillRule="evenodd"
                                   d="M32 9a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v30a3 3 0 0 1-3 3h-4a3 3 0 0 1-3-3V9Zm3-1a1 1 0 0 0-1 1v30a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-4Z"
-                                  clip-rule="evenodd"
+                                  clipRule="evenodd"
                                 />
                               </g>
                             </svg>
@@ -228,7 +226,6 @@ export default function List(props) {
                 ),
               }[props.groupValue]
             }
-            {/* ... Other groupValue conditions */}
             <div className="list-title">
               {
                 {
@@ -248,7 +245,7 @@ export default function List(props) {
                 }[props.groupValue]
               }
             </div>
-            <div className="list-sum">{cardCount}</div>
+            <div className="list-sum">{counterVar}</div>
           </div>
           <div className="flex items-center">
             <div className="list-add-item">
@@ -286,11 +283,11 @@ export default function List(props) {
               ticket.priority === props.listTitle ||
               ticket.userObj.name === props.listTitle
             ) {
-              cardCount++;
+              counterVar++;
               return <Card cardDetails={ticket} key={item} />;
             }
             return null;
-          }, (cardCount = 0))}
+          }, (counterVar = 0))}
         </div>
       </div>
     </>

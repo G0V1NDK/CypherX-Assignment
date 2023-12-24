@@ -16,13 +16,13 @@ export default function Navbar(props) {
     function handleOrder(e) {
         settoggleFilter(!toggleFilter);
         if (e.target.value !== undefined) {
-            props.handleOrderValue(e.target.value);
+            props.handleOrderData(e.target.value);
         }
     }
 
     return (
         <>
-          <section className="mb-8">
+          <section >
             <div className=" w-fit h-8vh ml-4 py-4 cursor-pointer">
               <div>
                 <div
